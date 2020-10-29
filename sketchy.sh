@@ -1,0 +1,20 @@
+#!/bin/sh
+
+###
+# User Config
+###
+
+SKETCHY_ROOT_DIR=/tmp/
+SKETCHY_DEFAULT_EDITOR=nvim
+
+###
+# Dev Config
+###
+
+# Aliases
+
+SKETCHY_LANG=$1
+SKETCHY_PROJECT_NAME=$2
+
+SKETCHY_PROJECT_DIR="$SKETCHY_ROOT_DIR$SKETCHY_PROJECT_NAME"
+mkdir $SKETCHY_PROJECT_DIR
