@@ -29,10 +29,19 @@ SKETCHY_PROJECT_DIR="$SKETCHY_ROOT_DIR$SKETCHY_PROJECT_NAME"
 
 # Project Generation
 
-for langName in ${SKETCHY_VALID_LANGS[*]}
+for langName in ${!SKETCHY_VALID_LANGS[*]}
 do
-    echo $langName
+    if [[ ${SKETCHY_VALID_LANGS[${langName}]} =~ ${SKETCHY_LANG} ]]
+    then
+        SKETCHY_VALID_LANG=langName
+    fi
 done
+
+if [ -z ${SKETCHY_VALID_LANG+x} ]
+then
+    echo "${SKETCHY_LANG} is not a valid language"
+    exit 1
+fi
 
 mkdir $SKETCHY_PROJECT_DIR
 cd $SKETCHY_PROJECT_DIR
