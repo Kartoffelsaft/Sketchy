@@ -48,7 +48,22 @@ cd $SKETCHY_PROJECT_DIR
 
 case $SKETCHY_VALID_LANG in
     cpp)
-        echo "C Plus Plus"
+        # I know the touching is redundant, but it's more clear
+        touch main.cpp 
+        touch run.sh
+
+        echo '#include <cstdio>' >> main.cpp
+        echo -e "\nint main(int argc, char ** argv) {" >> main.cpp
+        echo -e "\tprintf(\"Hello\\\n\");" >> main.cpp
+        echo -e "\treturn 0;\n}" >> main.cpp
+
+        echo '#!/bin/sh' >> run.sh
+        echo 'g++ -Og -g -Wall -Wextra main.cpp -o a.out' >> run.sh
+        echo './a.out' >> run.sh
+
+        chmod +x ./run.sh
+
+        ${SKETCHY_DEFAULT_EDITOR} ./main.cpp
         ;;
 
     rust)
