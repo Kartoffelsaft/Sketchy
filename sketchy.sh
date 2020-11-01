@@ -17,9 +17,9 @@ SKETCHY_DEFAULT_EDITOR=nvim
 # Aliases
 
 declare -A SKETCHY_VALID_LANGS=(
-    ["cpp"]='c++ cpp'
-    ["rust"]='rust rs'
-    ["haskell"]='haskell hs'
+    [cpp]='c++ cpp'
+    [rust]='rust rs'
+    [haskell]='haskell hs'
 )
 
 SKETCHY_LANG=$1
@@ -33,7 +33,7 @@ for langName in ${!SKETCHY_VALID_LANGS[*]}
 do
     if [[ ${SKETCHY_VALID_LANGS[${langName}]} =~ ${SKETCHY_LANG} ]]
     then
-        SKETCHY_VALID_LANG=langName
+        SKETCHY_VALID_LANG=$langName
     fi
 done
 
@@ -45,3 +45,21 @@ fi
 
 mkdir $SKETCHY_PROJECT_DIR
 cd $SKETCHY_PROJECT_DIR
+
+case $SKETCHY_VALID_LANG in
+    cpp)
+        echo "C Plus Plus"
+        ;;
+
+    rust)
+        echo "Rust"
+        ;;
+
+    haskell)
+        echo "Haskell"
+        ;;
+
+    *)
+        echo "${SKETCHY_LANG} was detected as a valid language, but has no configuration"
+        ;;
+esac
