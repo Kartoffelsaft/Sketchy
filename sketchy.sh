@@ -52,7 +52,8 @@ case $SKETCHY_VALID_LANG in
         ;;
 
     rust)
-        echo "Rust"
+        cargo init --vcs none
+        ${SKETCHY_DEFAULT_EDITOR} ./src/main.rs
         ;;
 
     haskell)
