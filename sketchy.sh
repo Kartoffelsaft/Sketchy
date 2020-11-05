@@ -72,7 +72,18 @@ case $SKETCHY_VALID_LANG in
         ;;
 
     haskell)
-        echo "Haskell"
+        touch main.hs
+
+        echo "square x = x * x" >> main.hs
+
+        if [ ${SKETCHY_DEFAULT_EDITOR} = nvim ]
+        then
+            SKETCHY_EDITOR_ARGS="+tabnew -c \"terminal ghci ./main.hs\" +tabfirst"
+        fi
+
+        echo $SKETCHY_EDITOR_ARGS
+
+        /bin/sh -c "${SKETCHY_DEFAULT_EDITOR} ./main.hs ${SKETCHY_EDITOR_ARGS}"
         ;;
 
     *)
